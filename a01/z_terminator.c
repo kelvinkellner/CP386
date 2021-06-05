@@ -1,6 +1,6 @@
 /*
  -------------------------------------
- File:    z_creator.c
+ File:    z_terminator.c
  Project: 190668940_190684430_a01_q01
  -------------------------------------
  Author:  Kelvin Kellner & Nishant Tewari 
@@ -15,18 +15,6 @@
 
 int main()
 {
-    pid_t child_pid = fork();
-    // Parent process
-    if (child_pid > 0)
-    {
-        sleep(10);
-    }
-    else
-    {
-        exit(0);
-    }
+    system("./z_creator & ps -l");
     return 0;
 }
-
-// Does not work: ps -l (no Z programs listed)
-// Works: ps -ef | grep a.out (says 1 defunct program)

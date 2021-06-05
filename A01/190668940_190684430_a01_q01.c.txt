@@ -1,0 +1,5 @@
+gcc -o z_creator z_creator.c
+gcc -o z_terminator z_terminator.c
+
+./z_creator
+./z_terminator
