@@ -18,16 +18,19 @@ int main()
 {
     pid_t pid = fork();
 
+    // Parent
     if (pid > 0)
     {
         printf("Parent process.");
         sleep(20);
     }
+    // Child
     else if (pid == 0)
     {
         printf("Child process.");
         exit(0);
     }
+    // Invalid pid
     else
     {
         printf("Error!");
