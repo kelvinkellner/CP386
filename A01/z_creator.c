@@ -9,24 +9,29 @@
  Version  2021-06-04
  -------------------------------------
  */
+#include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
 #include <unistd.h>
 
 int main()
 {
-    pid_t child_pid = fork();
-    // Parent process
-    if (child_pid > 0)
+    pid_t pid = fork();
+
+    if (pid > 0)
     {
-        sleep(10);
+        printf("Parent process.");
+        sleep(20);
+    }
+    else if (pid == 0)
+    {
+        printf("Child process.");
+        exit(0);
     }
     else
     {
-        exit(0);
+        printf("Error!");
+        return 1;
     }
     return 0;
 }
-
-// Does not work: ps -l (no Z programs listed)
-// Works: ps -ef | grep a.out (says 1 defunct program)
