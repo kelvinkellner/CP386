@@ -1,6 +1,6 @@
 /*
  -------------------------------------
- File:    z_creator.c
+ File:    process_management.c
  Project: 190668940_190684430_a01_q01
  -------------------------------------
  Author:  Kelvin Kellner & Nishant Tewari 
@@ -16,25 +16,4 @@
 
 int main()
 {
-    pid_t pid = fork();
-
-    // Parent
-    if (pid > 0)
-    {
-        printf("Parent process.");
-        sleep(20);
-    }
-    // Child
-    else if (pid == 0)
-    {
-        printf("Child process.");
-        exit(0);
-    }
-    // Invalid pid
-    else
-    {
-        printf("Error!");
-        return 1;
-    }
-    return 0;
 }
