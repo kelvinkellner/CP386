@@ -1,7 +1,7 @@
 /*
  -------------------------------------
  File:    z_creator.c
- Project: 190668940_190684430_a01_q01
+ Project: 190668940_190684430_a01_q11
  -------------------------------------
  Author:  Kelvin Kellner & Nishant Tewari 
  ID:      190668940 & 190684430
@@ -21,19 +21,19 @@ int main()
     // Parent
     if (pid > 0)
     {
-        printf("Parent process.");
-        sleep(20);
+        printf("In Parent Process!\n");
+        sleep(50);
     }
     // Child
     else if (pid == 0)
     {
-        printf("Child process.");
+        printf("In Child Process!\n");
         exit(0);
     }
     // Invalid pid
     else
     {
-        printf("Error!");
+        printf("Error!\n");
         return 1;
     }
     return 0;

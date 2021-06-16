@@ -1,0 +1,30 @@
+The output of: free -h : is
+>>>>>>>>>>>>>>>
+              total        used        free      shared  buff/cache   available
+Mem:           12Gi        84Mi        12Gi       0.0Ki        91Mi        12Gi
+Swap:         4.0Gi          0B       4.0Gi
+<<<<<<<<<<<<<<<The output of: ls -l -a -F : is
+>>>>>>>>>>>>>>>
+total 92
+drwxrwxrwx 1 kelvin kelvin   512 Jun  5 17:44 ./
+drwxrwxrwx 1 kelvin kelvin   512 Jun  5 17:33 ../
+-rwxrwxrwx 1 kelvin kelvin   659 Jun  5 17:34 Makefile*
+-rwxrwxrwx 1 kelvin kelvin  1291 Jun  5 17:44 output.txt*
+-rwxrwxrwx 1 kelvin kelvin 22632 Jun  5 17:44 process_management*
+-rwxrwxrwx 1 kelvin kelvin  5619 Jun  5 17:44 process_management.c*
+-rwxrwxrwx 1 kelvin kelvin  1229 Jun  5 17:39 process_management.h*
+-rwxrwxrwx 1 kelvin kelvin    44 Jun  5 17:34 sample_in.txt*
+-rwxrwxrwx 1 kelvin kelvin 19632 Jun  5 17:43 z_creator*
+-rwxrwxrwx 1 kelvin kelvin   803 Jun  5 17:43 z_creator.c*
+-rwxrwxrwx 1 kelvin kelvin 19480 Jun  5 17:38 z_terminator*
+-rwxrwxrwx 1 kelvin kelvin  1086 Jun  5 17:34 z_terminator.c*
+<<<<<<<<<<<<<<<The output of: whoami : is
+>>>>>>>>>>>>>>>
+kelvin
+<<<<<<<<<<<<<<<The output of: uptime -p : is
+>>>>>>>>>>>>>>>
+up 2 hours, 47 minutes
+<<<<<<<<<<<<<<<The output of: pwd : is
+>>>>>>>>>>>>>>>
+/mnt/c/Users/Owner/Desktop/CP386/a01
+<<<<<<<<<<<<<<<

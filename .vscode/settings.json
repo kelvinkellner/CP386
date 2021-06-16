@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "typeinfo": "c"
+        "typeinfo": "c",
+        "errno.h": "c",
+        "wait.h": "c",
+        "string.h": "c"
     }
 }
