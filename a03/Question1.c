@@ -3,9 +3,9 @@
  File:    Question1.c
  Project: 190668940_190684430_a03_q11
  -------------------------------------
- Author:  Kelvin Kellner & Nishant Tewari
- ID:      190668940 & 190684430
- Email:   kell8940@mylaurier.ca & tewa4430@mylaurier.ca
+ Author:  Kelvin Kellner
+ ID:      190668940
+ Email:   kell8940@mylaurier.ca
  Version  2021-07-10
  -------------------------------------
  */
