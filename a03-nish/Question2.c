@@ -40,9 +40,8 @@ typedef struct thread{ 								//represents a single thread, you can add more me
 	int retVal;
 } Thread;
 
-
-int threadsLeft(Thread *threads, int threadCount);
-int threadToStart(Thread *threads, int threadCount);
+int threadsLeft(Thread *threads, int t_Counter);
+int threadToStart(Thread *threads, int t_Counter);
 void* threadRun(void *t); 							//the thread function, the code eiecuted by each thread
 int readFile(char *fileName, Thread **threads); 	//function to read the file content and build array of threads
 
@@ -57,28 +56,28 @@ int main(int argc, char *argv[]) {
 	sem_init(&odd, 0, 0);
 
 	Thread *threads = NULL;
-	int threadCount = readFile(argv[1], &threads);
+	int t_Counter = readFile(argv[1], &threads);
 
 	startClock();
-	while (threadsLeft(threads, threadCount) > 0) {
-		int i = 0;
-		while ((i = threadToStart(threads, threadCount)) > -1) {
+	while (threadsLeft(threads, t_Counter) > 0) {
+		int x = 0;
+		while ((x = threadToStart(threads, t_Counter)) > -1) {
 			if (thread_one){
-				if (threads[i].tid[2] % 2)
+				if (threads[x].tid[2] % 2)
 					sem_post(&odd);
 				else
 					sem_post(&even);
 				thread_one = 0;
 			}
-			threads[i].state = 1;
-			threads[i].retVal = pthread_create(&(threads[i].handle), NULL,
-					threadRun, &threads[i]);
+			threads[x].state = 1;
+			threads[x].retVal = pthread_create(&(threads[x].handle), NULL,
+					threadRun, &threads[x]);
 		}
 			if (!thread_ready){
 			int checkAllReady = 1;
-			for (int i = 0; i < threadCount; i++){ 
+			for (int x = 0; x < t_Counter; x++){ 
 			
-				if (threads[i].state == 0)
+				if (threads[x].state == 0)
 					checkAllReady = 0;
 			}
 			if (checkAllReady) // Updating the thread_ready
@@ -115,17 +114,17 @@ int readFile(char *fileName, Thread **threads){ //***do not modify this method**
 	fclose(in);
 
 	char *command = NULL;
-	int threadCount = 0;
+	int t_Counter = 0;
 	char *fileCopy = (char*) malloc((strlen(fileContent) + 1) * sizeof(char));
 	strcpy(fileCopy, fileContent);
 	command = strtok(fileCopy, "\r\n");
 	while (command != NULL) {
-		threadCount++;
+		t_Counter++;
 		command = strtok(NULL, "\r\n");
 	}
-	*threads = (Thread*) malloc(sizeof(Thread) * threadCount);
+	*threads = (Thread*) malloc(sizeof(Thread) * t_Counter);
 
-	char *lines[threadCount];
+	char *lines[t_Counter];
 	command = NULL;
 	int i = 0;
 	command = strtok(fileContent, "\r\n");
@@ -136,7 +135,7 @@ int readFile(char *fileName, Thread **threads){ //***do not modify this method**
 		command = strtok(NULL, "\r\n");
 	}
 
-	for (int k = 0; k < threadCount; k++) {
+	for (int k = 0; k < t_Counter; k++) {
 		char *token = NULL;
 		int j = 0;
 		token = strtok(lines[k], ";");
@@ -153,7 +152,7 @@ int readFile(char *fileName, Thread **threads){ //***do not modify this method**
 			token = strtok(NULL, ";");
 		}
 	}
-	return threadCount;
+	return t_Counter;
 }
 
 void logStart(char *tID) {
@@ -164,17 +163,17 @@ void logFinish(char *tID) {
 	printf("[%ld] Thread with ID %s is finished.\n", getCurrentTime(), tID);
 }
 
-int threadsLeft(Thread *threads, int threadCount) {
+int threadsLeft(Thread *threads, int t_Counter) {
 	int remainingThreads = 0;
-	for (int k = 0; k < threadCount; k++) {
+	for (int k = 0; k < t_Counter; k++) {
 		if (threads[k].state > -1)
 			remainingThreads++;
 	}
 	return remainingThreads;
 }
 
-int threadToStart(Thread *threads, int threadCount) {
-	for (int k = 0; k < threadCount; k++) {
+int threadToStart(Thread *threads, int t_Counter) {
+	for (int k = 0; k < t_Counter; k++) {
 
 		if (threads[k].state == 0 && threads[k].startTime == getCurrentTime())
 			return k;
@@ -223,8 +222,8 @@ void* threadRun(void *arg){
 	logFinish(t->tid); 
 	t->state = -1;
 	pthread_exit(0);
-
 }
+
 void startClock() {
 	programClock = time(NULL);
 }

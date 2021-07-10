@@ -13,15 +13,18 @@
 #include<stdlib.h>
 #include<unistd.h>
 #include<pthread.h>
-#include<semaphore.h>
 
 // Global Data variables.
 int a = 5, b = 7;
-sem_t lock;
+pthread_mutex_t lock;
 
 // Function that access the global data.
 void* inc_dec(void *arg) {
-	sem_wait(&lock);
+
+	//Before entering the critical section, Lock the Mutex Lock! 
+	pthread_mutex_lock(&lock);
+
+	//Critical Section 
 	printf("Read value of 'a' global variable is: %d\n", a);
 	printf("Read value of 'b' global variable is: %d\n", b);
 	sleep(1);
@@ -29,12 +32,17 @@ void* inc_dec(void *arg) {
 	b = b - 1;
 	printf("Updated value of 'a' variable is: %d\n", a);
 	printf("Updated value of 'b' variable is: %d\n", b);
-	sem_post(&lock);
+
+	//After the critical Section, Unlock the mutex Lock!
+	pthread_mutex_unlock(&lock);
 	return 0;
 }
 int main() {
+	//Before creating the Thread instance 
+	//Mutex Lock being initialized!
+	pthread_mutex_init(&lock, 0);
+
 	// Creating the thread instances.
-	sem_init(&lock, 0,1);
 	pthread_t t1, t2, t3;
 	pthread_create(&t1, NULL, inc_dec, NULL);
 	pthread_create(&t2, NULL, inc_dec, NULL);
@@ -48,6 +56,6 @@ int main() {
 	pthread_exit(&t2);
 	pthread_exit(&t3);
 
-	sem_destroy(&lock); //Destroy the lock
+	pthread_mutex_destroy(&lock); //after destroying the threads, destroy the Mutex Lock 
 	return 0;
 }
