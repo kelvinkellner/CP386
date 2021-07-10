@@ -43,12 +43,10 @@ int main() {
 	pthread_join(t2, NULL);
 	pthread_join(t3, NULL);
 
-
 	//Destroying the threads.
 	pthread_exit(&t1);
 	pthread_exit(&t2);
 	pthread_exit(&t3);
-
 
 	sem_destroy(&lock); //Destroy the lock
 	return 0;
