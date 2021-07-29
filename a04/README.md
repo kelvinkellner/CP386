@@ -1,3 +1,3 @@
-# Assignment 4 has its own repository :)
+## Assignment 4 has its own repository :)
 
-## Here: <https://github.com/kelvinkellner/Bankers-Algorithm>
+### Here: <https://github.com/kelvinkellner/Bankers-Algorithm>
